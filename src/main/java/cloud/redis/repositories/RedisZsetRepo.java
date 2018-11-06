@@ -1,0 +1,86 @@
+package cloud.redis.repositories;
+
+
+
+import org.springframework.data.redis.connection.RedisZSetCommands;
+
+import java.util.Set;
+
+/**
+ * Created by JAVA on 2017/10/12.
+ */
+public interface RedisZsetRepo {
+
+
+    /**
+     * 逆序列出sorted set包括分数的set列表
+     *
+     * @param key
+     *            set名
+     * @param start
+     *            开始位置
+     * @param end
+     *            结束位置
+     * @return 列表
+     */
+    Set<RedisZSetCommands.Tuple> listSortedsetRev(String key, int start, int end);
+
+
+    /**
+     * 逆序取得sorted sort排名
+     *
+     * @param key
+     *            set名
+     * @param member
+     *            成员名
+     * @return 排名
+     */
+    Long getRankRev(String key, String member);
+
+    /**
+     * 根据成员名取得sorted sort分数
+     *
+     * @param key
+     *            set名
+     * @param member
+     *            成员名
+     * @return 分数
+     */
+    Double getMemberScore(String key, String member);
+
+    /**
+     * 向sorted set中追加一个值
+     *
+     * @param key
+     *            set名
+     * @param score
+     *            分数
+     * @param member
+     *            成员名称
+     */
+    boolean saveToSortedset(String key, Long score, String member);
+
+    /**
+     * 从sorted set删除一个值
+     *
+     * @param key
+     *            set名
+     * @param member
+     *            成员名称
+     */
+    boolean delFromSortedset(String key, String member);
+
+
+    /**
+     * 逆序列出sorted set包括分数的set列表
+     *
+     * @param key
+     *            set名
+     * @param start
+     *            开始位置
+     * @param end
+     *            结束位置
+     * @return 列表
+     */
+    Set<Object> SortedsetDesc(String key, int start, int end);
+}
